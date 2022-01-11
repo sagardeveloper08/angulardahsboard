@@ -1,0 +1,111 @@
+<div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">BÖLMƏLƏRİN  DAXİLİ VƏ REDAKTƏSİ </h3>
+    <div class="card-body">
+      <div id="table" class="table-editable">
+        <span class="table-add float-right mb-3 mr-2">
+          <button type="button" mdbBtn color="primary" class="btn btn-success btn-rounded btn-sm my-0"
+          (click)="addbolme.show()" (click)="_addbolme()">Add <i class="fas fa-plus fa-2x" aria-hidden="true"></i></button>
+       
+          </span> 
+          <div mdbModal #addbolme="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="card-header">
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="addbolme.hide()">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <h4 class="modal-title w-150" id="myModalLabel"><span>New bolme kodu</span></h4>
+                </div>               
+              <form [formGroup]="bolmeForm" class="normal-form" >               
+                <div class="modal-body" > 
+                  <div class="row">                  
+                    <div class="col-sm-12">
+                      <input type="text" [(ngModel)]="bolme.bolmeName" name="bolmeName"  placeholder="bolmeName yazin" class="form-control" formControlName="bolmeName" mdbInput>
+                      <label for="bolmeName">bolmeName</label>  
+                    </div>                    
+                                
+                  </div>    
+                            
+                </div>
+                <div class="modal-footer">
+                 <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)=onadd() (click)="add.hide()" [disabled]="!bolmeForm.valid">Save changes</button>
+                 <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="addbolme.hide()" mdbWavesEffect>Close</button>
+                 </div>
+               </form>
+              </div>
+            </div>
+          </div> 
+          <!------------------------------------------------------------->
+         <div mdbModal #delbolme="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="card-header">
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="delbolme.hide()">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <h4 class="modal-title w-150" id="myModalLabel"><span>Del {{ bolme.bolmeName }}</span></h4>
+                </div>
+                <form  class="normal-form">           
+                <div class="modal-footer">
+                 <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="ondel()" (click)="delbolme.hide()">YES</button>
+                 <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="delbolme.hide()" mdbWavesEffect>NO</button>
+                 </div>
+               </form>
+              </div>
+            </div>
+          </div> 
+          <table mdbTable class="table table-striped table-bordered table-sm dataTable">
+              <thead>     
+                <tr>   
+                  <th class="text-center" colspan="9">
+                   <!-- <input type="text" [(ngModel)]="searchText" class="form-control" id="search" mdbInput/>  -->           
+                   
+                                   
+                    
+                   </th>
+                 </tr>
+                <tr>      
+                 <!-- <th *ngFor="let head of headElements; let i = index" [mdbTableSort]="listbolme" [sortBy]="headElements[i]"
+                   scope="col">{{head | titlecase}} <mdb-icon fas icon="sort"></mdb-icon>
+                 </th> -->
+                 
+                <!-- <th class="text-center">bolmegiId</th> 
+                  <th class="text-center" >BId</th>    -->
+                  <th class="text-center">BolmeName</th>    
+                     
+                  <th class="text-center">Sort</th>
+                  <th class="text-center">Actions</th>
+                 
+                </tr>
+              </thead>             
+
+              <tbody *ngFor='let p of listbolme; let i = index'>
+                <tr>
+                 <!--   <td class="pt-3-half" contenteditable="true">{{ p.navid }}</td>-->
+                  <!-- <td class="pt-3-half" contenteditable="true">{{ p.genId }}</td> -->
+                  <td class="pt-3-half" contenteditable="true">{{ p.bolmeName }}</td>
+                 <!-- <td class="pt-3-half" contenteditable="true">{{ p.description}}</td>    
+                  <td class="pt-3-half" contenteditable="true">{{ p.firma_unvan}}</td>
+                  <td class="pt-3-half" contenteditable="true">{{ p.firma_email}}</td>  
+                  <td class="pt-3-half" contenteditable="true">{{ p.voen}}</td>  -->
+                  <td class="pt-3-half">
+                    <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
+                          aria-hidden="true"></i></a></span>
+                    <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down"
+                          aria-hidden="true"></i></a></span>
+                  </td>
+                  <td>
+                    <span class="table-remove">
+                      <button type="button" (click)="addbolme.show()" (click)="_editbolme(p)" class="btn btn-info btn-sm my-0">
+                        Edit<i class="fas fa-edit"></i></button>
+                      <button type="button" (click)="delbolme.show()" (click)="_editbolme(p)" class="btn btn-danger btn-rounded btn-sm my-0">
+                        Remove<i class="fas fa-trash-alt"></i></button>
+                    </span>
+                  </td>
+                </tr>       
+              </tbody>
+          </table>
+         </div>
+      </div>
+  </div>
+

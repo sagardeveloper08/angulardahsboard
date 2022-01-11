@@ -1,0 +1,214 @@
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Add / Edit / Delete Question</h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+        <div mdbModal #addque="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="card-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="addque.hide()">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel"><span>New Menu</span></h4>
+              </div>               
+            <form [formGroup]="queForm" class="normal-form" >               
+              <div class="modal-body" > 
+                <div class="row">
+                  <div class="col-sm-4"></div>
+                  <div class="col-sm-4">
+                    <div class="form-group" >
+                      <select [(ngModel)]="que.subId"  name="_sub" formControlName="subId" (change)="selsub($event.target.value)" 
+                          class="browser-default custom-select" >
+                             <option >Choose</option>   
+                             <option *ngFor="let o of _subce" [value]="o.subId" >{{o.subname}}</option>                                 
+                      </select> 
+                     <label for="formGroupExampleInput">Subject</label>                     
+                    </div>
+                  </div> 
+                  <div class="col-sm-4"></div>
+                  <div class="col-sm-12">                   
+                    <textarea type="text" [(ngModel)]="que.questin" name="questin" rows="3" placeholder="Suali yazin" class="form-control" formControlName="questin" mdbInput></textarea>
+                    <label for="questin" class="">Questin</label>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-outline">     
+                      <input  class="form-check-input" checked={{_ansId1}} type="radio" name="ansId" value="1"  formControlName="ansId" required/>                 
+                      <input type="text" [(ngModel)]="que.a_answer" name="a_answer" placeholder="" class="form-control" formControlName="a_answer" mdbInput>                     
+                      <label for="validationCustom01" class="form-label">A cavab</label>              
+                    </div>
+                  </div>                 
+                  <div class="col-sm-6"> 
+                    <div class="form-outline">
+                      <input  class="form-check-input"  checked={{_ansId2}} type="radio" name="ansId" value="2" formControlName="ansId" required/>
+                      <input type="text" [(ngModel)]="que.b_answer" name="b_answer" placeholder="" class="form-control" formControlName="b_answer" mdbInput>
+                      <label for="validationCustom02" class="form-label">B cavab</label>                     
+                    </div>
+                  
+                </div>  
+                  <div class="col-sm-6">
+                    <div class="form-outline">
+                      <input  class="form-check-input"  checked={{_ansId3}} type="radio" name="ansId"  value="3" formControlName="ansId" required />
+                      <input type="text" [(ngModel)]="que.c_answer" name="c_answer" placeholder="" class="form-control" formControlName="c_answer" mdbInput>
+                      <label for="validationCustom01" class="form-label">C cavab</label>                      
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-outline">
+                      <input  class="form-check-input" checked={{_ansId4}} type="radio" name="ansId" value="4" formControlName="ansId" required/>
+                      <input type="text" [(ngModel)]="que.d_answer" name="d_answer" placeholder="" class="form-control" formControlName="d_answer" mdbInput>
+                      <label for="validationCustom02" class="form-label">D cavab</label>                    
+                    </div>
+                  </div>
+                </div>    
+                          
+              </div>
+              <div class="modal-footer">
+               <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)=onadd() (click)="addque.hide()" [disabled]="!queForm.valid">Save changes</button>
+               <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="addque.hide()" mdbWavesEffect>Close</button>
+               </div>
+             </form>
+            </div>
+          </div>
+        </div> 
+        <!------------------------------------------------------------->
+       <div mdbModal #delque="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="card-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="delque.hide()">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel"><span>Del {{ que.questin }}</span></h4>
+              </div>
+              <form  class="normal-form">           
+              <div class="modal-footer">
+               <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="ondel()" (click)="delque.hide()">YES</button>
+               <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="delque.hide()" mdbWavesEffect>NO</button>
+               </div>
+             </form>
+            </div>
+          </div>
+        </div> 
+        <table mdbTable class="table table-striped table-bordered table-sm dataTable">
+            <thead>     
+              <tr>   
+                <th class="text-center" colspan="9">
+                 <!-- <input type="text" [(ngModel)]="searchText" class="form-control" id="search" mdbInput/>  -->           
+                 
+                                 
+                     <button type="button" mdbBtn color="primary" class="btn btn-success btn-rounded btn-sm my-0"
+                     (click)="addque.show()" (click)="_addque()">Add <i class="fas fa-plus fa-2x" aria-hidden="true"></i></button>
+                 </th>
+               </tr>
+              <tr>      
+               <!-- <th *ngFor="let head of headElements; let i = index" [mdbTableSort]="listque" [sortBy]="headElements[i]"
+                 scope="col">{{head | titlecase}} <mdb-icon fas icon="sort"></mdb-icon>
+               </th> -->
+               
+               <th class="text-center">questin</th> 
+                <th class="text-center" >a_answer</th>    
+                <th class="text-center">b_answer</th>    
+                <th class="text-center">c_answer</th>    
+                <th class="text-center">d_answer</th> 
+                <th class="text-center">subId</th>    
+                <th class="text-center">ansId</th>     
+                <th class="text-center">Actions</th>
+               
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of listque; let i = index">
+               <!-- <td scope="row">{{ p.quid }}</td>-->
+                <td class="pt-3-half" contenteditable="true" [ngClass]="'w-250'">{{ p.questin}}</td>
+                <td class="pt-3-half" contenteditable="true" [ngClass]="'w-80'">{{ p.a_answer}}</td>
+                <td class="pt-3-half" contenteditable="true" [ngClass]="'w-80'">{{ p.b_answer}}</td>
+                <td class="pt-3-half" contenteditable="true" [ngClass]="'w-80'">{{ p.c_answer}}</td>
+                <td class="pt-3-half" contenteditable="true" [ngClass]="'w-80'">{{ p.d_answer}}</td>
+                <td class="pt-3-half" contenteditable="true" [ngClass]="'w-80'">{{ p.subId }}</td>
+                <td class="pt-3-half" contenteditable="true"[ngClass]="'w-40'">{{ p.ansId}}</td>    
+                 
+                <td>
+                  <span class="table-remove">
+                    <button type="button" (click)="addque.show()" (click)="_editque(p)" class="btn btn-info btn-sm my-0">
+                      Edit<i class="fas fa-edit"></i></button>
+                    <button type="button" (click)="delque.show()" (click)="_editque(p)" class="btn btn-danger btn-rounded btn-sm my-0">
+                      Remove<i class="fas fa-trash-alt"></i></button>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+       </div>
+    </div>
+</div>
+
+
+<!--
+<form [formGroup]="quesForm" class="row g-3 needs-validation" novalidate>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      
+      <select [(ngModel)]="subcname"  name="_sub" formControlName="subId" (change)="selsub($event.target.value)"                       
+           class="browser-default custom-select" >
+       <option >Choose</option>                                    
+       <option *ngFor="let o of _subce" [value]="o.subId" >{{o.subname}}</option>                                 
+     </select> 
+     <label for="formGroupExampleInput">Subject</label>
+    
+      </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+          <div class="form-outline">
+            <textarea type="text" [(ngModel)]="que.questin" name="questin" rows="3" placeholder="Suali yazin" class="form-control" formControlName="questin" mdbInput></textarea>
+           
+            <div class="valid-feedback">Looks good!</div>
+            <label for="validationCustom01" class="form-label">Sual </label>
+          </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+    <div class="col-md-4">
+      <div class="form-outline">
+        <input  class="form-check-input" type="radio" name="ansId" value="1"  formControlName="ansId" required/>
+        <input type="text" [(ngModel)]="que.a_answer" name="a_answer" placeholder="" class="form-control" formControlName="a_answer" mdbInput>
+         <label for="validationCustom01" class="form-label">A cavab</label>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-outline">
+        <input  class="form-check-input" type="radio" name="ansId" value="2" formControlName="ansId" required/>
+        <input type="text" [(ngModel)]="que.b_answer" name="b_answer" placeholder="" class="form-control" formControlName="b_answer" mdbInput>
+        <label for="validationCustom02" class="form-label">B cavab</label>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+      <div class="form-outline">
+        <input  class="form-check-input" type="radio" name="ansId"  value="3" formControlName="ansId" required />
+        <input type="text" [(ngModel)]="que.c_answer" name="c_answer" placeholder="" class="form-control" formControlName="c_answer" mdbInput>
+        <label for="validationCustom01" class="form-label">C cavab</label>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-outline">
+        <input  class="form-check-input" type="radio" name="ansId" value="4" formControlName="ansId" required/>
+        <input type="text" [(ngModel)]="que.d_answer" name="d_answer" placeholder="" class="form-control" formControlName="d_answer" mdbInput>
+        <label for="validationCustom02" class="form-label">D cavab</label>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+    </div>
+    <div class="col-md-5"></div>
+    <div class="col-md-2">
+        <button class="btn btn-primary" type="submit" (click)="onAdd()" [disabled]="!quesForm.valid"> Ok </button>         
+    </div>   
+   
+    <div class="col-md-5"></div> 
+  </form>-->
+  
+  
+  

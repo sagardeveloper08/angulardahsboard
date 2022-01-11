@@ -1,0 +1,304 @@
+<div class="container">
+ <mdb-card class="animated fadeIn mb-3" borderColor="border-warning">
+      <mdb-card-header>Add/Edit/Delete Items</mdb-card-header>
+      <mdb-card-body class="p-3">  
+      <div id="table" class="table-editable">
+        <span class="table-add float-right mb-3 mr-2">
+          <button type="button" mdbBtn color="primary" class="btn btn-success btn-rounded btn-sm my-0"
+          (click)="additem.show()" (click)="_additem()">Add <i class="fas fa-plus fa-2x" aria-hidden="true"></i></button>
+          </span> 
+          <div mdbModal #additem="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fluid " role="document" style="width: 1000px;height: auto" borderColor="border-warning">
+              <div class="modal-content">
+                <div class="card-header">
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="additem.hide()">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <h4 class="modal-title w-150" id="myModalLabel"><span>Mal daxili</span></h4>
+                </div>
+                <form [formGroup]="itemForm" class="normal-form" >               
+                <div class="modal-body" > 
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <label for="formGroupExampleInput">Firma</label>
+                     <input readonly type="text" [(ngModel)]="item.storId" name="storId" placeholder="firma yazin" class="form-control" formControlName="storId" mdbInput> 
+                      <!-- <select [(ngModel)]="firname"  name="_fir" formControlName="storId" (change)="selfir($event.target.value)"                       
+                           class="browser-default custom-select" >
+                             <option >Choose</option>                                    
+                       <option *ngFor="let o of _firma" [value]="o.firmaname" >{{o.firmaname}}</option>                                 
+                     </select>  -->
+                     </div>  
+                    <div class="col-sm-2">
+                        <label for="formGroupExampleInput">Cinsi seçin</label>
+                        <select [(ngModel)]="gender"  name="_gen" formControlName="genId" (change)="selgen($event.target.value)"                       
+                             class="browser-default custom-select" >
+                               <option >Choose</option>                                    
+                         <option *ngFor="let o of _gender" [value]="o.genname" >{{o.genname}}</option>                                 
+                       </select>    
+                    </div>  
+                    <div class="col-sm-2">
+                        <label for="formGroupExampleInput">Categoriya seçin</label>
+                    <select [(ngModel)]="catname"  name="_cat" formControlName="catId" (change)="selcate($event.target.value)"                       
+                         class="browser-default custom-select" >
+                           <option >Choose</option>                                    
+                     <option *ngFor="let o of _cate" [value]="o.catname" >{{o.catname}}</option>                                 
+                   </select>  
+                      </div>                 
+                      <div class="col-sm-2">
+                        <label for="formGroupExampleInput">Marka seçin</label>
+                        <select [(ngModel)]="marname"  name="_mar" formControlName="markaId" (change)="selmar($event.target.value)"                       
+                             class="browser-default custom-select" >
+                               <option >Choose</option>                                    
+                         <option *ngFor="let o of _marka" [value]="o.markaname" >{{o.markaname}}</option>                                 
+                       </select>  
+                    </div>                      
+                    <div class="col-sm-2">
+                       <label for="formGroupExampleInput">İstifadə yeri</label><!--Kullanim alani seçin -->
+                      <select [(ngModel)]="kulname"  name="_kul" formControlName="kulalanId" (change)="selkull($event.target.value)"                       
+                           class="browser-default custom-select" >
+                             <option >Choose</option>                                    
+                       <option *ngFor="let o of _kullan" [value]="o.kullanimname" >{{o.kullanimname}}</option>                                 
+                     </select>                     
+                    </div>  
+                    <div class="col-sm-2">
+                        <label for="formGroupExampleInput">Stil seçin</label>
+                        <select [(ngModel)]="stilname"  name="_sti" formControlName="stilId" (change)="selstil($event.target.value)"                       
+                             class="browser-default custom-select" >
+                               <option >Choose</option>                                    
+                         <option *ngFor="let o of _stil" [value]="o.stilname" >{{o.stilname}}</option>                                 
+                       </select> 
+                    </div>  
+                                   
+                    <div class="col-sm-2" *ngIf="_shomi"> 
+                        <label for="formGroupExampleInput">Beden seçin</label>
+                        <select [(ngModel)]="bedname" id="_b"  name="_bed" formControlName="bedenId" (change)="selbed($event.target.value)"                       
+                             class="browser-default custom-select" >
+                               <option >Choose</option>                                    
+                         <option *ngFor="let o of _beden" [value]="o.trEu" >{{o.trEu}}</option>                                 
+                       </select>                       
+                    </div>  
+                    <div class="col-sm-2" *ngIf="_shomi1">
+                      <label for="formGroupExampleInput">Yaka seçin</label>
+                      <select [(ngModel)]="yakname" id="_y" name="_yak" formControlName="yakaId" (change)="selyaka($event.target.value)"                       
+                           class="browser-default custom-select" >
+                             <option >Choose</option>                                    
+                       <option *ngFor="let o of _yaka" [value]="o.yakaname" >{{o.yakaname}}</option>                                 
+                     </select>                        
+                    </div>  
+                    <div class="col-sm-2" *ngIf="_shomi1">
+                      <label for="formGroupExampleInput">Qol seçin</label>
+                      <select [(ngModel)]="qolname" id="_q"  name="_qol" formControlName="qolId" (change)="selqol($event.target.value)"                       
+                           class="browser-default custom-select" >
+                             <option >Choose</option>                                    
+                       <option *ngFor="let o of _qoltipi" [value]="o.qoltipiname" >{{o.qoltipiname}}</option>                                 
+                     </select>                        
+                    </div>  
+                    <div class="col-sm-2" *ngIf="_shomi1">
+                      <label for="formGroupExampleInput">Kumaş tipi seçin</label>
+                      <select [(ngModel)]="kumname" id="_ku" name="_kum" formControlName="kumashId" (change)="selkumas($event.target.value)"                       
+                           class="browser-default custom-select" >
+                             <option >Choose</option>                                    
+                       <option *ngFor="let o of _kumash" [value]="o.kumashname" >{{o.kumashname}}</option>                                 
+                     </select>                       
+                    </div> 
+                    <div class="col-sm-2" *ngIf="_shomi1">
+                      <label for="formGroupExampleInput">Qelip seçin</label>
+                      <select [(ngModel)]="qelname"  name="_qel" formControlName="qelipId" (change)="selqel($event.target.value)"                       
+                           class="browser-default custom-select" >
+                             <option >Choose</option>                                    
+                       <option *ngFor="let o of _qelip" [value]="o.qelipname" >{{o.qelipname}}</option>                                 
+                     </select>                       
+                    </div>  
+                    <div class="col-sm-2" *ngIf="_shomi1">
+                      <label for="formGroupExampleInput">Material seçin</label>
+                      <select [(ngModel)]="matname"  name="_mat" formControlName="matId" (change)="selmater($event.target.value)"                       
+                           class="browser-default custom-select" >
+                             <option >Choose</option>                                    
+                       <option *ngFor="let o of _mater" [value]="o.matname" >{{o.matname}}</option>                                 
+                     </select> 
+                    </div> 
+                    <div class="col-sm-2" *ngIf="_shomi1">
+                      <label for="formGroupExampleInput">Disain seçin</label>
+                      <select [(ngModel)]="desname"  name="_des" formControlName="desId" (change)="seldes($event.target.value)"                       
+                           class="browser-default custom-select" >
+                             <option >Choose</option>                                    
+                       <option *ngFor="let o of _desen" [value]="o.desname" >{{o.desname}}</option>                                 
+                     </select>                       
+                      </div>
+                      <div class="col-sm-2">
+                        <label for="Item barcode" class=""><i class="fas fa-tag prefix grey-text"></i>Malın barcode</label>
+                        <input type="number"  [(ngModel)]="item.barcode" minlength="0"   name="barcode"  class="form-control" formControlName="barcode" placeholder="" mdbInput> 
+                      </div>    
+                      <div class="col-sm-2">
+                        <label for="item_delivery" class=""><i class="fas fa-tag prefix grey-text"></i>Çatdırılması</label>
+                        <input type="checkbox"  [(ngModel)]="item.delivery"   name="delivery"  class="form-control" formControlName="delivery" placeholder="" mdbInput> 
+                    </div>  
+                    <div class="col-sm-2">
+                      <label for="discount" class=""><i class="fas fa-tag prefix grey-text"></i>Endirim %</label>
+                      <input type="number"  [(ngModel)]="item.discount"   name="discount"  class="form-control" formControlName="discount" placeholder="" mdbInput> 
+                     </div>
+                     <div class="col-sm-2">
+                      <label for="Discontinued" class=""><i class="fas fa-tag prefix grey-text"></i>Satishdan çıxar</label>
+                      <input type="checkbox"  [(ngModel)]="item.Discontinued"   name="Discontinued"  class="form-control" formControlName="Discontinued" placeholder="" mdbInput> 
+                   </div>                  
+                    <div class="col-sm-4">
+                      <label for="prodname" class=""><i class="fas fa-tag prefix grey-text"></i>Malın adı</label>
+                    <input type="text" [(ngModel)]="item.prodname" name="prodname" placeholder="" class="form-control" formControlName="prodname" mdbInput>   
+                    </div>
+                    <div class="col-sm-2">
+                        <label for="buy_unitprice" class=""><i class="fas fa-tag prefix grey-text"></i>Aliş price</label>
+                        <input type="number"  [(ngModel)]="item.buy_unitprice"   name="buy_unitprice" (change)="_bayunit($event.target.value)"  class="form-control" formControlName="buy_unitprice" placeholder="" mdbInput> 
+                    </div>
+                    <div class="col-sm-2">
+                        <label for="sell_unitprice" class=""><i class="fas fa-tag prefix grey-text"></i>Satış price</label>
+                        <input type="number"  [(ngModel)]="item.sell_unitprice"   name="sell_unitprice"  class="form-control" formControlName="sell_unitprice" placeholder="" mdbInput> 
+                    </div>  
+                    <div class="col-sm-2">
+                      <label for="boxquantity" class=""><i class="fas fa-tag prefix grey-text"></i>Qutuda</label>
+                      <input type="number"  [(ngModel)]="item.boxquantity"   name="boxquantity"  class="form-control" formControlName="boxquantity" placeholder="" mdbInput> 
+                    </div>                  
+                    <div class="col-sm-2">
+                        <label for="unitsinstock" class=""><i class="fas fa-tag prefix grey-text"></i>Miqdarı</label>
+                        <input type="number"  [(ngModel)]="item.unitsinstock"   name="unitsinstock"  class="form-control" formControlName="unitsinstock" placeholder="" mdbInput> 
+                    </div>              
+                    <div class="col-sm-12"> 
+                  <hr>
+                  <!-- <label for="formGroupExampleInput">Color seçin</label>  -->
+                  <div class="form-check form-check-inline" *ngFor="let item of _color; let i=index">
+                    <input name="colId" [checked]="item.isChecked" (change)="onChangeColor(item.colId, $event.target.checked)" formControlName="colId" class="form-check-input" type="checkbox"/>
+                      <label class="form-check-label" for="inlineCheckbox1">{{item.colname}}</label>
+                      <!-- <div class="col-sm-4">                                          
+                        <img *ngFor="let url of urls; let i = index" [src]="url" width="50" height="50" alt="" (click)="_delFiles(i)" class="img-fluid img-thumbnail">
+                         <input type="file" [src]="imgsrc" formControlName="_file" accept=" image/* " multiple (change)="_selectFiles($event)" />                   
+                      </div>    -->
+                  </div>  
+                  <hr>
+                  <!-- <select [(ngModel)]="colname"  name="_col" formControlName="colId" (change)="selcol($event.target.value)"                       
+                       class="browser-default custom-select" >
+                         <option >Choose</option>                                    
+                   <option *ngFor="let o of _color" [value]="o.colname" >{{o.colname}}</option>                                 
+                 </select>                     -->
+                   </div> 
+               
+                    <div class="col-sm-12">                                          
+                    <img *ngFor="let url of urls; let i = index" [src]="url" width="50" height="50" alt="" (click)="_delFiles(i)" class="img-fluid img-thumbnail">
+                     <input type="file" [src]="imgsrc" formControlName="_file" accept=" image/* " multiple (change)="_selectFiles($event)" />                   
+                    </div> 
+                                   
+                  </div>               
+                </div>               
+                <div class="modal-footer">                 
+                 <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)=_uploadFiles() (click)="additem.hide()" [disabled]="!itemForm.valid">Save changes</button>
+                 <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="additem.hide()" mdbWavesEffect>Close</button>
+                 </div>
+               </form>
+              </div>
+            </div>
+          </div> 
+          <!----=======================================================-----------[disabled]="!itemForm.valid"-------->
+          <div mdbModal #delitem="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="card-header">
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="delitem.hide()">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <h4 class="modal-title w-100" id="myModalLabel"><span>Del {{ item.prodname }}</span></h4>
+                </div>
+                <form  class="normal-form">           
+                <div class="modal-footer">
+                 <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="ondel()" (click)="delitem.hide()">YES</button>
+                 <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="delitem.hide()" mdbWavesEffect>NO</button>
+                 </div>
+               </form>
+              </div>
+            </div>
+          </div> 
+          <div class="table-responsive">
+            <table class="table table-bordered table-responsive-md table-striped text-center"  *ngIf='listitem && listitem.length'>
+            <thead>
+              <tr>  <!-- [mdbTableSort]="listitem"   [sortBy]="headElements[i]"  -->
+                 <th *ngFor="let head of headElements; let i = index" scope="col">{{head | titlecase}} <mdb-icon fas icon="sort"></mdb-icon>
+              </th>               
+               <!-- <th class="text-center">Navid</th>
+                <th class="text-center">Id</th> 
+                <th class="text-center">Item name</th>    
+                <th class="text-center">firma_telefon</th>    
+                <th class="text-center">firma_unvan</th>    
+                <th class="text-center">firma_email</th>
+                <th class="text-center">voen</th>            
+                <th class="text-center">Sort</th>
+                <th class="text-center">Actions</th>-->
+              </tr>
+            </thead>
+            <tbody *ngFor='let p of listitem'>
+              <tr>
+                <!-- 'firmaname','price','itemname','beden','genname','color','catname' -->
+                <td>
+                  <div class="d-flex">
+                    <div class="form-check my-auto">
+                      <input class="form-check-input" type="checkbox" id="customCheck1" checked="">
+                    </div>
+                    <img class="w-10 ms-3" width="50" height="50" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/adidas-hoodie.jpg" alt="hoodie">
+                    <h6 class="ms-3 my-auto">BKLGO Full Zip Hoodie</h6>
+                  </div>
+                </td>
+                <!-- <td class="pt-3-half" contenteditable="true">{{ p.storname }}</td> -->
+                <td class="pt-3-half" contenteditable="true">{{ p.prodname }}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.buy_unitprice }}</td>  
+                <td class="pt-3-half" contenteditable="true">{{ p.genname }}</td>              
+                <td class="pt-3-half" contenteditable="true">{{ p.beden }}</td>               
+                <td class="pt-3-half" contenteditable="true">{{ p.trEu }}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.colname }}</td>                
+                <td class="pt-3-half" contenteditable="true">{{ p.catname }}</td>
+                
+
+                <!-- <td class="pt-3-half" contenteditable="true">{{ p.delivery }}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.desenname }}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.discount }}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.hidden }}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.markaname }}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.matname }}</td>
+               
+                <td class="pt-3-half" contenteditable="true">{{ p.unitsinstock }}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.sell_unitprice }}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.stilname }}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.kullanimname }}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.kumashname }}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.qaimedate }}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.qelipname }}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.qoltipiname }}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.trEu }}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.yakaname }}</td> -->
+               
+                <td class="pt-3-half">
+                  <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
+                        aria-hidden="true"></i></a></span>
+                  <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down"
+                        aria-hidden="true"></i></a></span>
+                </td>
+                <td>
+                  <span class="table-remove">
+                    <button type="button" (click)="additem.show()" (click)="_edititem(p)" class="btn btn-info btn-sm my-0">
+                      Edit<i class="fas fa-edit"></i></button>
+                    <button type="button" (click)="delitem.show()" (click)="_edititem(p)" class="btn btn-danger btn-rounded btn-sm my-0">
+                      Remove<i class="fas fa-trash-alt"></i></button>
+                  </span>
+                </td>
+              </tr>       
+            </tbody>
+          </table>
+          </div>
+          
+        </div>
+</mdb-card-body>
+</mdb-card>
+</div>       
+<div class="badge-colors ml-auto mr-auto">
+  <span class="badge filter badge-purple active" data-color="purple"></span>
+  <span class="badge filter badge-azure" data-color="azure"></span>
+  <span class="badge filter badge-green" data-color="green"></span>
+  <span class="badge filter badge-warning" data-color="orange"></span>
+  <span class="badge filter badge-danger" data-color="danger"></span>
+  <span class="badge filter badge-rose" data-color="rose"></span>
+</div>

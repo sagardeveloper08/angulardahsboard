@@ -1,0 +1,114 @@
+<div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Add/Edit/Delete Materal_name</h3>
+    <div class="card-body">
+      <div id="table" class="table-editable">
+        <span class="table-add float-right mb-3 mr-2">
+          <button type="button" mdbBtn desor="primary" class="btn btn-success btn-rounded btn-sm my-0"
+          (click)="addmat.show()" (click)="_addmat()">Add <i class="fas fa-plus fa-2x" aria-hidden="true"></i></button>
+          </span> 
+          <div mdbModal #addmat="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="card-header">
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="addmat.hide()">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <h4 class="modal-title w-100" id="myModalLabel"><span>New Materal_name</span></h4>
+                </div>               
+              <form [formGroup]="matForm" class="normal-form" >               
+                <div class="modal-body" > 
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <label for="matname" class=""><i class="fas fa-tag prefix grey-text"></i>Marka name</label>
+                    <input type="text" [(ngModel)]="mat.matname" name="matname" placeholder="Materal name yazin" class="form-control" formControlName="matname" mdbInput>   
+                    </div>
+                   <!-- <div class="col-sm-6">
+                      <label for="firmaunvan" class=""><i class="fas fa-tag prefix grey-text"></i>firmaunvan</label>
+                      <input type="text"  [(ngModel)]="fir.firmaunvan"   name="firmaunvan"  class="form-control" formControlName="firmaunvan" placeholder="firmaunvan yazin" mdbInput> 
+                    </div>-->
+                  </div>   
+                 <!-- <div class="row">
+                    <div class="col-sm-4">
+                      <label for="firmatelefon" class=""><i class="fas fa-tag prefix grey-text"></i>firmatelefon</label>
+                    <input type="text"  [(ngModel)]="fir.firmatelefon"   name="firmatelefon" placeholder="firmatelefon yazin" class="form-control" formControlName="firmatelefon" mdbInput> 
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="firmaemail" class=""><i class="fas fa-tag prefix grey-text"></i>firmaemail</label>
+                      <input type="text"  [(ngModel)]="fir.firmaemail"   name="firmaemail" placeholder="firmaemail yazin"  class="form-control" formControlName="firmaemail" mdbInput> 
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="voen" class=""><i class="fas fa-tag prefix grey-text"></i>voen</label>
+                        <input type="number"  [(ngModel)]="fir.voen"   name="voen" placeholder="voen yazin"  class="form-control" formControlName="voen" mdbInput> 
+                      </div>
+                  </div> -->                    
+                </div>
+                <div class="modal-footer">
+                 <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)=onadd() (click)="addmat.hide()" [disabled]="!matForm.valid">Save changes</button>
+                 <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="addmat.hide()" mdbWavesEffect>Close</button>
+                 </div>
+               </form>
+              </div>
+            </div>
+          </div> 
+          <!------------------------------------------------------------->
+          <div mdbModal #delmat="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="card-header">
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="delmat.hide()">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <h4 class="modal-title w-100" id="myModalLabel"><span>Del {{ mat.matname }}</span></h4>
+                </div>
+                <form  class="normal-form">           
+                <div class="modal-footer">
+                 <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="ondel()" (click)="delmat.hide()">YES</button>
+                 <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="delmat.hide()" mdbWavesEffect>NO</button>
+                 </div>
+               </form>
+              </div>
+            </div>
+          </div> 
+          <table class="table table-bordered table-responsive-md table-striped text-center"  *ngIf='listmat && listmat.length'>
+            <thead>
+              <tr>                
+               <!-- <th class="text-center">Navid</th>
+                <th class="text-center">Materal Id</th> -->
+                <th class="text-center">Materal name</th>    
+                <!--<th class="text-center">firmatelefon</th>    
+                <th class="text-center">firmaunvan</th>    
+                <th class="text-center">firmaemail</th>
+                <th class="text-center">voen</th>    -->         
+                <th class="text-center">Sort</th>
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody *ngFor='let p of filteredmat'>
+              <tr>
+               <!--   <td class="pt-3-half" contenteditable="true">{{ p.navid }}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.matId }}</td>-->
+                <td class="pt-3-half" contenteditable="true">{{ p.matname }}</td>
+               <!-- <td class="pt-3-half" contenteditable="true">{{ p.firmatelefon}}</td>    
+                <td class="pt-3-half" contenteditable="true">{{ p.firmaunvan}}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.firmaemail}}</td>  
+                <td class="pt-3-half" contenteditable="true">{{ p.voen}}</td>  -->
+                <td class="pt-3-half">
+                  <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
+                        aria-hidden="true"></i></a></span>
+                  <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down"
+                        aria-hidden="true"></i></a></span>
+                </td>
+                <td>
+                  <span class="table-remove">
+                    <button type="button" (click)="addmat.show()" (click)="_editmat(p)" class="btn btn-info btn-sm my-0">
+                      Edit<i class="fas fa-edit"></i></button>
+                    <button type="button" (click)="delmat.show()" (click)="_editmat(p)" class="btn btn-danger btn-rounded btn-sm my-0">
+                      Remove<i class="fas fa-trash-alt"></i></button>
+                  </span>
+                </td>
+              </tr>       
+            </tbody>
+          </table>
+        </div>
+      </div>
+</div>

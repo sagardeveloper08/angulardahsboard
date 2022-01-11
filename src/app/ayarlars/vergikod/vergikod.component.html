@@ -1,0 +1,123 @@
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Add/Edit/Delete Vergi kodlari</h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      <span class="table-add float-left mb-3 mr-2">
+        <div class="md-form">
+          <input type="text" [(ngModel)]="searchText"  class="form-control" id="search" mdbInput />
+          <label for="search">Search</label>
+        </div>
+      </span>
+      <span class="table-add float-right mb-3 mr-2">
+        <button type="button" mdbBtn color="primary" class="btn btn-success btn-rounded btn-sm my-0"
+        (click)="addvergi.show()" (click)="_addvergi()">Add <i class="fas fa-plus fa-2x" aria-hidden="true"></i></button>
+        </span> 
+        
+        <div mdbModal #addvergi="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="card-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="addvergi.hide()">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-150" id="myModalLabel"><span>New Aktivler</span></h4>
+              </div>               
+            <form [formGroup]="vergiForm" class="normal-form" >               
+              <div class="modal-body" > 
+                <div class="row">                  
+                  <div class="col-sm-12">
+                    <label for="vergikodununadi" class=""><i class="fas fa-tag prefix grey-text"></i>Vergiin adi</label>
+                  <input type="text" [(ngModel)]="vergi.vergikodununadi" name="vergikodununadi" placeholder="vergikodununadi yazin" class="form-control" formControlName="vergikodununadi" mdbInput>   
+                  </div>  
+                  <div class="col-sm-6">
+                    <label for="vergikodu" class=""><i class="fas fa-tag prefix grey-text"></i>Vergiin Kodu</label>
+                  <input type="text" [(ngModel)]="vergi.vergikodu" name="vergikodu" placeholder="vergikodu yazin" class="form-control" formControlName="vergikodu" mdbInput>   
+                  </div> 
+                  <div class="col-sm-6">
+                    <label for="formGroupExampleInput">Vahid</label>
+                  <select [(ngModel)]="vergi.vId"  name="_vahid" formControlName="vId" (change)="selrol($event.target.value)"                       
+                     class="browser-default custom-select" >
+                    <option >Choose page</option>                                    
+                    <option *ngFor="let o of listvahid" [value]="o.vahidadi" >{{o.vahidadi}}</option>                                 
+                  </select>
+                      <!-- <label for="vId" class=""><i class="fas fa-tag prefix grey-text"></i>vId</label>
+                    <input type="text" [(ngModel)]="vergi.vId" name="vId" placeholder="vId yazin" class="form-control" formControlName="vId" mdbInput>    -->
+                  </div>                 
+                </div>        
+                         
+              </div>
+              <div class="modal-footer">
+               <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)=onadd() (click)="addvergi.hide()" [disabled]="!vergiForm.valid">Save changes</button>
+               <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="addvergi.hide()" mdbWavesEffect>Close</button>
+               </div>
+             </form>
+            </div>
+          </div>
+        </div> 
+        
+        <div mdbModal #delvergi="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="card-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="delvergi.hide()">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-150" id="myModalLabel"><span>Del {{ vergi.vergikodununadi }}</span></h4>
+              </div>
+              <form  class="normal-form">           
+              <div class="modal-footer">
+               <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="ondel()" (click)="delvergi.hide()">YES</button>
+               <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="delvergi.hide()" mdbWavesEffect>NO</button>
+               </div>
+             </form>
+            </div>
+          </div>
+        </div>
+        <table class="table table-bordered table-responsive-md table-striped text-center"  *ngIf='listvergi && listvergi.length'>
+          <thead>
+            
+            <tr *ngFor="let head of headElements; let i = index"  scope="col">                
+             <!-- <th class="text-center">Navid</th>-->
+              <th class="text-center">{{ head.vergikodu }} </th> 
+              <th class="text-center">{{head.vergikodununadi}} </th>    
+              <th class="text-center">{{ head.vahidadi}} </th>    
+              <th class="text-center">{{ head.Actions}}</th>  
+           <!--   <th class="text-center">firma_unvan</th>    
+              <th class="text-center">firma_email</th>
+              <th class="text-center">voen</th>            
+              <th class="text-center">Sort</th>
+              <th class="text-center">Actions</th>--> 
+              
+            </tr>
+          </thead>
+          <tbody *ngFor='let p of filteredvergi'>
+            <tr>
+             <!--   <td class="pt-3-half" contenteditable="true">{{ p.navid }}</td>-->
+              <!-- <td class="pt-3-half" contenteditable="true">{{ p.genId }}</td> -->
+              <td class="pt-3-half" contenteditable="true">{{ p.vergikodu }}</td>
+              <td class="pt-3-half" contenteditable="true">{{ p.vergikodununadi}}</td>    
+              <td class="pt-3-half" contenteditable="true">{{ p.vahidadi}}</td>
+             <!--  <td class="pt-3-half" contenteditable="true">{{ p.firma_email}}</td>  
+             <td class="pt-3-half" contenteditable="true">{{ p.voen}}</td>  -->
+            <!--  <td class="pt-3-half">
+                <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
+                      aria-hidden="true"></i></a></span>
+                <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down"
+                      aria-hidden="true"></i></a></span>
+              </td>-->
+              <td>
+                <span class="table-remove">
+                  <button type="button" (click)="addvergi.show()" (click)="_editvergi(p)" class="btn btn-info btn-sm my-0">
+                    Edit<i class="fas fa-edit"></i></button>
+                  <button type="button" (click)="delvergi.show()" (click)="_editvergi(p)" class="btn btn-danger btn-rounded btn-sm my-0">
+                    Remove<i class="fas fa-trash-alt"></i></button>
+                </span>
+              </td>
+            </tr>       
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+
+

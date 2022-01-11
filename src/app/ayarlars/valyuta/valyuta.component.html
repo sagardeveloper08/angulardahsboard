@@ -1,0 +1,103 @@
+<div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Add/Edit/Delete Valyuta</h3>
+    <div class="card-body">
+      <div id="table" class="table-editable">
+        <span class="table-add float-right mb-3 mr-2">
+          <button type="button" mdbBtn color="primary" class="btn btn-success btn-rounded btn-sm my-0"
+          (click)="addvalyuta.show()" (click)="_addvalyuta()">Add <i class="fas fa-plus fa-2x" aria-hidden="true"></i></button>
+          </span> 
+          
+          <div mdbModal #addvalyuta="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="card-header">
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="addvalyuta.hide()">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <h4 class="modal-title w-150" id="myModalLabel"><span>New Valyuta</span></h4>
+                </div>               
+              <form [formGroup]="valyutaForm" class="normal-form" >               
+                <div class="modal-body" > 
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <label for="valname" class=""><i class="fas fa-tag prefix grey-text"></i>Valyuta adi</label>
+                    <input type="text" [(ngModel)]="valyuta.valname" name="valname" placeholder="valname yazin" class="form-control" formControlName="valname" mdbInput>   
+                    </div>  
+                   <div class="col-sm-12">
+                        <label for="valnominal" class=""><i class="fas fa-tag prefix grey-text"></i>Val nominal</label>
+                      <input type="number" [(ngModel)]="valyuta.valnominal" name="valnominal" placeholder="valnominal yazin" class="form-control" formControlName="valnominal" mdbInput>   
+                    </div>             
+                  </div>        
+                           
+                </div>
+                <div class="modal-footer">
+                 <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)=onadd() (click)="addvalyuta.hide()" [disabled]="!valyutaForm.valid">Save changes</button>
+                 <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="addvalyuta.hide()" mdbWavesEffect>Close</button>
+                 </div>
+               </form>
+              </div>
+            </div>
+          </div> 
+          
+          <div mdbModal #delvalyuta="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="card-header">
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="delvalyuta.hide()">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <h4 class="modal-title w-150" id="myModalLabel"><span>Del {{ valyuta.valname }}</span></h4>
+                </div>
+                <form  class="normal-form">           
+                <div class="modal-footer">
+                 <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="ondel()" (click)="delvalyuta.hide()">YES</button>
+                 <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="delvalyuta.hide()" mdbWavesEffect>NO</button>
+                 </div>
+               </form>
+              </div>
+            </div>
+          </div>
+          <table class="table table-bordered table-responsive-md table-striped text-center"  *ngIf='listvalyuta && listvalyuta.length'>
+            <thead>
+              <tr>                
+               <!-- <th class="text-center">Navid</th>-->
+                <!-- <th class="text-center">genId</th>  -->
+                <th class="text-center">valyuta name</th>    
+                <th class="text-center">Val nominal</th>    
+              <!--  <th class="text-center">firma_unvan</th>    
+                <th class="text-center">firma_email</th>
+                <th class="text-center">voen</th>    -->         
+                <th class="text-center">Sort</th>
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody *ngFor='let p of filteredvalyuta'>
+              <tr>
+               <!--   <td class="pt-3-half" contenteditable="true">{{ p.navid }}</td>-->
+                <!-- <td class="pt-3-half" contenteditable="true">{{ p.genId }}</td> -->
+                <td class="pt-3-half" contenteditable="true">{{ p.valname }}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.valnominal}}</td>    
+               <!-- <td class="pt-3-half" contenteditable="true">{{ p.firma_unvan}}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.firma_email}}</td>  
+                <td class="pt-3-half" contenteditable="true">{{ p.voen}}</td>  -->
+                <td class="pt-3-half">
+                  <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
+                        aria-hidden="true"></i></a></span>
+                  <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down"
+                        aria-hidden="true"></i></a></span>
+                </td>
+                <td>
+                  <span class="table-remove">
+                    <button type="button" (click)="addvalyuta.show()" (click)="_editvalyuta(p)" class="btn btn-info btn-sm my-0">
+                      Edit<i class="fas fa-edit"></i></button>
+                    <button type="button" (click)="delvalyuta.show()" (click)="_editvalyuta(p)" class="btn btn-danger btn-rounded btn-sm my-0">
+                      Remove<i class="fas fa-trash-alt"></i></button>
+                  </span>
+                </td>
+              </tr>       
+            </tbody>
+          </table>
+        </div>
+      </div>
+</div>
+

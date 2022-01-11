@@ -1,0 +1,159 @@
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Add/Edit/Delete Şirkət</h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      <span class="table-add float-right mb-3 mr-2">
+        <button type="button" mdbBtn color="primary" class="btn btn-success btn-rounded btn-sm my-0"
+        (click)="addshirket.show()" (click)="_addshirket()">Add <i class="fas fa-plus fa-2x" aria-hidden="true"></i></button>
+        </span> 
+        
+        <div mdbModal #addshirket="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="card-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="addshirket.hide()">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-150" id="myModalLabel"><span>New Şirkət</span></h4>
+              </div>               
+            <form [formGroup]="shirketForm" class="normal-form" >               
+              <div class="modal-body" > 
+                <div class="row">
+                  <div class="col-sm-6">
+                    <label for="bankadi" class=""><i class="fas fa-tag prefix grey-text"></i>bankadi adi</label>
+                    <input type="text" [(ngModel)]="shirket.bankadi" name="bankadi" placeholder="bankadi yazin" class="form-control" formControlName="bankadi" mdbInput>   
+                  </div>  
+                  <div class="col-sm-6">
+                    <label for="userId" class=""><i class="fas fa-tag prefix grey-text"></i>userId</label>
+                  <input type="text" [(ngModel)]="shirket.userId" name="userId" placeholder="userId yazin" class="form-control" formControlName="userId" mdbInput readonly>     
+                  </div>  
+                  <div class="col-sm-3">
+                      <label for="bankvoen" class=""><i class="fas fa-tag prefix grey-text"></i>bankvoen</label>
+                    <input type="number" [(ngModel)]="shirket.bankvoen" name="bankvoen" placeholder="bankvoen yazin" class="form-control" formControlName="bankvoen" mdbInput>   
+                  </div> 
+                  <div class="col-sm-3">
+                    <label for="swift" class=""><i class="fas fa-tag prefix grey-text"></i>swift</label>
+                  <input type="text" [(ngModel)]="shirket.swift" name="swift" placeholder="swift yazin" class="form-control" formControlName="swift" mdbInput>   
+                  </div>  
+                  <div class="col-sm-3">
+                  <label for="muxbirhesab" class=""><i class="fas fa-tag prefix grey-text"></i>muxbirhesab</label>
+                  <input type="number" [(ngModel)]="shirket.muxbirhesab" name="muxbirhesab" placeholder="muxbirhesab yazin" class="form-control" formControlName="muxbirhesab" mdbInput> 
+                  </div>
+                  <div class="col-sm-3">
+                    <label for="shirvoen" class=""><i class="fas fa-tag prefix grey-text"></i>shirvoen</label>
+                  <input type="number" [(ngModel)]="shirket.shirvoen" name="shirvoen" placeholder="shirvoen yazin" class="form-control" formControlName="shirvoen" mdbInput>     
+                  </div>   
+                  <div class="col-sm-6">
+                  <label for="bankkodu" class=""><i class="fas fa-tag prefix grey-text"></i>bankkodu</label>
+                   <input type="number" [(ngModel)]="shirket.bankkodu" name="bankkodu" placeholder="bankkodu yazin" class="form-control" formControlName="bankkodu" mdbInput>   
+                  </div>
+                  <div class="col-sm-6">
+                  <label for="aznhesab" class=""><i class="fas fa-tag prefix grey-text"></i>aznhesab</label>
+                  <input type="text" [(ngModel)]="shirket.aznhesab" name="aznhesab" placeholder="aznhesab yazin" class="form-control" formControlName="aznhesab" mdbInput>     
+                  </div>  
+                  
+                  <div class="col-sm-6">
+                    <label for="shiricrachi" class=""><i class="fas fa-tag prefix grey-text"></i>shiricrachi</label>
+                  <input type="text" [(ngModel)]="shirket.shiricrachi" name="shiricrachi" placeholder="shiricrachi yazin" class="form-control" formControlName="shiricrachi" mdbInput>     
+                  </div>  
+                    
+                  <div class="col-sm-6">
+                    <label for="cavabdehshexs" class=""><i class="fas fa-tag prefix grey-text"></i>cavabdehshexs</label>
+                  <input type="text" [(ngModel)]="shirket.cavabdehshexs" name="cavabdehshexs" placeholder="cavabdehshexs yazin" class="form-control" formControlName="cavabdehshexs" mdbInput>     
+                  </div>   
+                  <div class="col-sm-6">
+                    <label for="email" class=""><i class="fas fa-tag prefix grey-text"></i>email</label>
+                  <input type="text" [(ngModel)]="shirket.email" name="email" placeholder="email yazin" class="form-control" formControlName="email" mdbInput>     
+                  </div>   
+                  <div class="col-sm-6">
+                    <label for="unvan" class=""><i class="fas fa-tag prefix grey-text"></i>unvan</label>
+                  <input type="text" [(ngModel)]="shirket.unvan" name="unvan" placeholder="unvan yazin" class="form-control" formControlName="unvan" mdbInput>     
+                  </div>  
+                 
+                 
+                </div>     
+                </div>
+              <div class="modal-footer">
+               <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)=onadd() (click)="addshirket.hide()" [disabled]="!shirketForm.valid">Save changes</button>
+               <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="addshirket.hide()" mdbWavesEffect>Close</button>
+               </div>
+             </form>
+            </div>
+          </div>
+        </div> 
+        
+        <div mdbModal #delshirket="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="card-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="delshirket.hide()">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-150" id="myModalLabel"><span>Del {{ shirket.shirketName }}</span></h4>
+              </div>
+              <form  class="normal-form">           
+              <div class="modal-footer">
+               <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="ondel()" (click)="delshirket.hide()">YES</button>
+               <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="delshirket.hide()" mdbWavesEffect>NO</button>
+               </div>
+             </form>
+            </div>
+          </div>
+        </div>
+        <table class="table table-bordered table-responsive-md table-striped text-center"  *ngIf='listshirket && listshirket.length'>
+          <thead>
+            <tr>                
+            
+              <th class="text-center">bankadi</th>  
+              <!-- <th class="text-center">bankvoen</th>      -->
+              <th class="text-center">swift</th>  
+              <!-- <th class="text-center">muxbirhesab</th>    -->
+              <th class="text-center">bankkodu</th>  
+              <th class="text-center">aznhesab</th>
+              <!-- <th class="text-center">shiricrachi</th>    -->
+              <th class="text-center">shirvoen</th>
+              <th class="text-center">cavabdehshexs</th> 
+              <!-- <th class="text-center">email</th>  -->
+              <!-- <th class="text-center">unvan</th>  -->
+              <!-- <th class="text-center">userId</th>          -->
+              <!-- <th class="text-center">Sort</th> -->
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody *ngFor='let p of filteredshirket'>
+            <tr>
+              
+              <td class="pt-3-half" contenteditable="true">{{ p.bankadi }}</td>
+              <!-- <td class="pt-3-half" contenteditable="true">{{ p.bankvoen}}</td> -->
+              <td class="pt-3-half" contenteditable="true">{{ p.swift}}</td>  
+              <!-- <td class="pt-3-half" contenteditable="true">{{ p.muxbirhesab}}</td>  -->
+              <td class="pt-3-half" contenteditable="true">{{ p.bankkodu}}</td>
+              <td class="pt-3-half" contenteditable="true">{{ p.aznhesab}}</td>
+              <!-- <td class="pt-3-half" contenteditable="true">{{ p.shiricrachi}}</td> -->
+              <td class="pt-3-half" contenteditable="true">{{ p.shirvoen}}</td>
+              <td class="pt-3-half" contenteditable="true">{{ p.cavabdehshexs}}</td>
+              <!-- <td class="pt-3-half" contenteditable="true">{{ p.email}}</td> -->
+              <!-- <td class="pt-3-half" contenteditable="true">{{ p.unvan}}</td> -->
+              <!-- <td class="pt-3-half" contenteditable="true">{{ p.userId}}</td> -->
+              <!-- <td class="pt-3-half">
+                <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
+                      aria-hidden="true"></i></a></span>
+                <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down"
+                      aria-hidden="true"></i></a></span>
+              </td> -->
+              <td>
+                <span class="table-remove">
+                  <button type="button" (click)="addshirket.show()" (click)="_editshirket(p)" class="btn btn-info btn-sm my-0">
+                    Edit<i class="fas fa-edit"></i></button>
+                  <button type="button" (click)="delshirket.show()" (click)="_editshirket(p)" class="btn btn-danger btn-rounded btn-sm my-0">
+                    Remove<i class="fas fa-trash-alt"></i></button>
+                </span>
+              </td>
+            </tr>       
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+
+

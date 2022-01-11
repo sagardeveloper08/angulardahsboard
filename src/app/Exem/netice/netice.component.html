@@ -1,0 +1,79 @@
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Nəticə</h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-4" *ngIf="isAdmin"> 
+          <select   name="name"  (change)="selemai($event.target.value)" 
+                          class="browser-default custom-select" >
+              <option >Choose</option>   
+             <option *ngFor="let o of _email" [value]="o.userId" >{{o.userId}}</option>                                 
+          </select>         
+         <!-- <input type="text" value="{{ name }}" name="userId" placeholder="Bura Email-inizi yazin" class="form-control"  mdbInput >-->
+          <label for="formGroupExampleInput">Email</label>
+        </div>
+        <div class="col-md-3"> 
+          <input type="date" id="input" class="form-control" [placeholder]="'Selected date'" [(ngModel)]="_date" required mdbInput >
+            <label for="input">Choose your date</label>             
+        </div>
+        <div class="col-md-1"> 
+          <button class="btn btn-primary" type="submit" (click)="_Dates()">OK</button>
+        </div>
+        <div class="col-md-12">
+          <table mdbTable class="table table-striped table-bordered table-sm dataTable">
+            <thead>
+              <th class="text-center" >Kimdir</th>
+              <th class="text-center" >Duzlər</th> 
+            </thead> 
+            <tbody>
+              <tr *ngFor="let p of listque; let i = index">
+                <!--<td scope="row">{{ p.exId }}</td>-->
+                <td class="pt-3-half" contenteditable="true"[ngClass]="'w-250'">{{ p.userId}}</td> 
+                <td class="pt-3-half" contenteditable="true" [ngClass]="'w-50'">{{ p.duz}}</td>    
+              </tr>
+            </tbody>  
+          </table>
+        <table mdbTable class="table table-striped table-bordered table-sm dataTable">
+        <thead>     
+          <!--<tr>   
+            <th class="text-center" colspan="8">
+              <input type="text" [(ngModel)]="searchText" class="form-control" id="search" mdbInput/></th>             
+            
+             <th class="text-center">                 
+                <button type="button" mdbBtn color="primary" class="btn btn-success btn-rounded btn-sm my-0"
+                (click)="addque.show()" (click)="_addque()">Add <i class="fas fa-plus fa-2x" aria-hidden="true"></i></button>
+            </th>
+          </tr>-->
+          <tr>      
+          <!--   <th *ngFor="let head of headElements; let i = index" [mdbTableSort]="listexe" [sortBy]="headElements[i]"
+            scope="col">{{head | titlecase}} <mdb-icon fas icon="sort"></mdb-icon>
+          </th> 
+          <th class="text-center"></th>-->
+          <th class="text-center" >subname</th>
+          <th class="text-center" >questin</th> 
+            <th class="text-center" >ansId</th>    
+            <th class="text-center" >rating</th>    
+            <th class="text-center">duz</th>    
+           <!-- <th class="text-center">sehv</th>              
+            <th class="text-center">Actions</th>-->
+          
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of listexe; let i = index">
+            <!--<td scope="row">{{ p.exId }}</td>-->
+            <td class="pt-3-half" contenteditable="true" [ngClass]="w-30"> {{ p.subname }}</td> 
+            <td class="pt-3-half" contenteditable="true" [ngClass]="w-600">{{ p.questin }}</td>
+            <td class="pt-3-half" contenteditable="true" [ngClass]="w-30"> {{ p.ansId }}</td>
+            <td class="pt-3-half" contenteditable="true" [ngClass]="w-30"> {{ p.rating }}</td>
+            <td class="pt-3-half" contenteditable="true" [ngClass]="w-40"> {{ p.duz }}</td>
+          <!--  <td class="pt-3-half" contenteditable="true" [ngClass]="'w-30'">{{ p.sehv }}</td>   -->  
+          </tr>
+        </tbody>
+        </table>
+        </div>
+      </div>
+</div>
+</div>
+</div>

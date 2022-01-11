@@ -1,0 +1,131 @@
+<div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Add/Edit/Delete hesab</h3>
+    <div class="card-body">
+      <div id="table" class="table-editable">
+        <span class="table-add float-right mb-3 mr-2">
+          <button type="button" mdbBtn color="primary" class="btn btn-success btn-rounded btn-sm my-0"
+          (click)="addhesab.show()" (click)="_addhesab()">Add <i class="fas fa-plus fa-2x" aria-hidden="true"></i></button>
+          </span> 
+          
+          <div mdbModal #addhesab="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="card-header">
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="addhesab.hide()">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <h4 class="modal-title w-150" id="myModalLabel"><span>New hesab</span></h4>
+                </div>               
+              <form [formGroup]="hesabForm" class="normal-form" >               
+                <div class="modal-body" > 
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <label for="hesnom" class=""><i class="fas fa-tag prefix grey-text"></i>hesab nöm</label>
+                    <input type="text" [(ngModel)]="hesab.hesnom" name="hesnom" placeholder="hesnom yazin" class="form-control" formControlName="hesnom" mdbInput>   
+                    </div>  
+                   <div class="col-sm-12">
+                        <label for="hesname" class=""><i class="fas fa-tag prefix grey-text"></i>Hesab adi</label>
+                      <input type="text" [(ngModel)]="hesab.hesname" name="hesname" placeholder="hesname yazin" class="form-control" formControlName="hesname" mdbInput>   
+                   </div>       
+                   <div class="col-sm-4">
+                    <label for="formGroupExampleInput">Bölmə adi</label>
+                    <select [(ngModel)]="hesab.bId"  name="_bolme" formControlName="bId" (change)="selrol($event.target.value)"                       
+                    class="browser-default custom-select" >
+                      <option >Choose page</option>                                    
+                      <option *ngFor="let o of listbolme" [value]="o.bolmeName" >{{o.bolmeName}}</option>                                 
+                   </select>
+                    <!-- <label for="bId" class=""><i class="fas fa-tag prefix grey-text"></i>bId adi</label>
+                  <input type="text" [(ngModel)]="hesab.bId" name="bId" placeholder="bId yazin" class="form-control" formControlName="bId" mdbInput>    -->
+                  </div>            
+                  <div class="col-sm-4">
+                    <label for="formGroupExampleInput">Tipler</label>
+                    <select [(ngModel)]="hesab.tipId"  name="_tip" formControlName="tipId" (change)="selrol($event.target.value)"                       
+                         class="browser-default custom-select" >
+                           <option >Choose page</option>                                    
+                     <option *ngFor="let o of listtip" [value]="o.tipName" >{{o.tipName}}</option>                                 
+                   </select>
+                  <!--  <label for="tipId" class=""><i class="fas fa-tag prefix grey-text"></i>tipId adi</label>
+                  <input type="text" [(ngModel)]="hesab.tipId" name="tipId" placeholder="tipId yazin" class="form-control" formControlName="tipId" mdbInput>   -->
+                </div>   
+                <div class="col-sm-4">
+                  <label for="formGroupExampleInput">Madde</label>
+                  <select [(ngModel)]="hesab.mId"  name="_madde" formControlName="mId" (change)="selrol($event.target.value)"                       
+                     class="browser-default custom-select" >
+                    <option >Choose page</option>                                    
+                    <option *ngFor="let o of listmadde" [value]="o.maddeName" >{{o.maddeName}}</option>                                 
+                  </select>
+                 </div>   
+                </div>       
+              </div>   
+                <div class="modal-footer">
+                 <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)=onadd() (click)="addhesab.hide()" [disabled]="!hesabForm.valid">Save changes</button>
+                 <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="addhesab.hide()" mdbWavesEffect>Close</button>
+                 </div>
+               </form>
+              </div>
+            </div>
+          </div> 
+          
+          <div mdbModal #delhesab="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="card-header">
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="delhesab.hide()">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <h4 class="modal-title w-150" id="myModalLabel"><span>Del {{ hesab.hesname }}</span></h4>
+                </div>
+                <form  class="normal-form">           
+                <div class="modal-footer">
+                 <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="ondel()" (click)="delhesab.hide()">YES</button>
+                 <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="delhesab.hide()" mdbWavesEffect>NO</button>
+                 </div>
+               </form>
+              </div>
+            </div>
+          </div>
+          <table class="table table-bordered table-responsive-md table-striped text-center"  *ngIf='listhesab && listhesab.length'>
+            <thead>
+              <tr>                
+               <!-- <th class="text-center">Navid</th>-->
+                <!-- <th class="text-center">genId</th>  -->
+                <th class="text-center">hesab nom</th>    
+                <th class="text-center">hesab name</th>    
+                <th class="text-center">Madde</th>    
+                <th class="text-center">Bolme</th>
+                <th class="text-center">Tipi</th>          
+                <th class="text-center">Sort</th>
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody *ngFor='let p of filteredhesab'>
+              <tr>
+               <!--   <td class="pt-3-half" contenteditable="true">{{ p.navid }}</td>-->
+               <!-- <td class="pt-3-half" contenteditable="true">{{ p.genId }}</td> -->
+                <td class="pt-3-half" contenteditable="true">{{ p.hesnom }}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.hesname}}</td>    
+               <td class="pt-3-half" contenteditable="true">{{ p.maddeName}}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.bolmeName}}</td>  
+                <td class="pt-3-half" contenteditable="true">{{ p.tipName}}</td> 
+                <td class="pt-3-half">
+                  <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
+                        aria-hidden="true"></i></a></span>
+                  <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down"
+                        aria-hidden="true"></i></a></span>
+                </td>
+                <td>
+                  <span class="table-remove">
+                    <button type="button" (click)="addhesab.show()" (click)="_edithesab(p)" class="btn btn-info btn-sm my-0">
+                      Edit<i class="fas fa-edit"></i></button>
+                    <button type="button" (click)="delhesab.show()" (click)="_edithesab(p)" class="btn btn-danger btn-rounded btn-sm my-0">
+                      Remove<i class="fas fa-trash-alt"></i></button>
+                  </span>
+                </td>
+              </tr>       
+            </tbody>
+          </table>
+        </div>
+      </div>
+</div>
+
+

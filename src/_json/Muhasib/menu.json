@@ -1,0 +1,22 @@
+[
+    {"nid":"","pid":null,"ntitle":"Administrator","npath":"admin/","nicon":null,"nlan":"Az","ncsay":"1","nrol":"Administrator","ink":1,"nisparent":true},
+    {"nid":"","pid":"Administrator","ntitle":"Admin","npath":"admin/admin","nicon":null,"nlan":"Az","ncsay":"1","nrol":"Administrator","ink":2,"nisparent":false},
+    {"nid":"","pid":"Administrator","ntitle":"ADD MENU","npath":"admin/addmen","nicon":null,"nlan":"Az","ncsay":"1","nrol":"Administrator","ink":3,"nisparent":false},
+    {"nid":"","pid":"Administrator","ntitle":"ADD ROLE","npath":"admin/role","nicon":null,"nlan":"Az","ncsay":"1","nrol":"Administrator","ink":4,"nisparent":false},
+
+    {"nid":"","pid":null,"ntitle":"AYARLAR","npath":"ayarlar/","nicon":null,"nlan":"Az","ncsay":"1","nrol":"Administrator","ink":5,"nisparent":true},
+    {"nid":"","pid":"AYARLAR","ntitle":"VergiKodlari","npath":"ayarlars/vergikod","nicon":null,"nlan":"Az","ncsay":"1","nrol":"Administrator","ink":6,"nisparent":false},
+    {"nid":"","pid":"AYARLAR","ntitle":"Vahidlər","npath":"ayarlars/vahidler","nicon":null,"nlan":"Az","ncsay":"1","nrol":"Administrator","ink":7,"nisparent":false},
+    {"nid":"","pid":"AYARLAR","ntitle":"Hesab əməliyyatları","npath":"ayarlars/hesablar","nicon":null,"nlan":"Az","ncsay":"1","nrol":"Administrator","ink":8,"nisparent":false},
+    {"nid":"","pid":"AYARLAR","ntitle":"Tiplər","npath":"ayarlars/tipler","nicon":null,"nlan":"Az","ncsay":"1","nrol":"Administrator","ink":9,"nisparent":false},
+    {"nid":"","pid":"AYARLAR","ntitle":"Aktivlər","npath":"ayarlars/aktivler","nicon":null,"nlan":"Az","ncsay":"1","nrol":"Administrator","ink":10,"nisparent":false},
+    {"nid":"","pid":"AYARLAR","ntitle":"Maddələr","npath":"ayarlars/madde","nicon":null,"nlan":"Az","ncsay":"1","nrol":"Administrator","ink":11,"nisparent":false},
+    {"nid":"","pid":"AYARLAR","ntitle":"Bölmələr","npath":"ayarlars/bolme","nicon":null,"nlan":"Az","ncsay":"1","nrol":"Administrator","ink":12,"nisparent":false},
+    {"nid":"","pid":"AYARLAR","ntitle":"Valyuta","npath":"ayarlars/valyuta","nicon":null,"nlan":"Az","ncsay":"1","nrol":"Administrator","ink":13,"nisparent":false},
+    {"nid":"","pid":"AYARLAR","ntitle":"Müşdərilər","npath":"ayarlars/mushderiler","nicon":null,"nlan":"Az","ncsay":"1","nrol":"Administrator","ink":14,"nisparent":false},
+    {"nid":"","pid":"AYARLAR","ntitle":"Şirkətimiz","npath":"ayarlars/shirketimiz","nicon":null,"nlan":"Az","ncsay":"1","nrol":"Administrator","ink":15,"nisparent":false},
+
+    {"nid":"","pid":null,"ntitle":"EMƏLİYYATLAR","npath":"emeliyyat/","nicon":null,"nlan":"Az","ncsay":"1","nrol":"Administrator","ink":16,"nisparent":true},
+    {"nid":"","pid":"EMƏLİYYATLAR","ntitle":"ALIŞ","npath":"emeliyyat/alish","nicon":null,"nlan":"Az","ncsay":"1","nrol":"Administrator","ink":17,"nisparent":false},
+    {"nid":"","pid":"EMƏLİYYATLAR","ntitle":"SATIŞ","npath":"emeliyyat/satish","nicon":null,"nlan":"Az","ncsay":"1","nrol":"Administrator","ink":18,"nisparent":false}
+]

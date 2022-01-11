@@ -1,0 +1,182 @@
+[
+     {
+        "yakaId": "",
+        "yakaname": "Balıkçı Yaka"  ,
+        "genId":"KADIN"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Bisiklet Yaka"  ,
+        "genId":"KADIN"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Degaje Yaka"  ,
+        "genId":"KADIN"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Dik Yaka"  ,
+        "genId":"KADIN"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Düğmeli"  ,
+        "genId":"KADIN"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Geniş Yaka"  ,
+        "genId":"KADIN"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Gömlek Yaka"  ,
+        "genId":"KADIN"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Hakim Yaka"  ,
+        "genId":"KADIN"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Kapüşonlu"  ,
+        "genId":"KADIN"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Kare Yaka"  ,
+        "genId":"KADIN"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Kayık Yaka"  ,
+        "genId":"KADIN"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Klasik"  ,
+        "genId":"KADIN"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Kruvaze Yaka"  ,
+        "genId":"KADIN"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "O Yaka"  ,
+        "genId":"KADIN"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Polo Yaka"  ,
+        "genId":"KADIN"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Sıfır Yaka"  ,
+        "genId":"KADIN"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "u yaka"  ,
+        "genId":"KADIN"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "V Yaka"  ,
+        "genId":"KADIN"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Yuvarlak Yaka"  ,
+        "genId":"KADIN"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Balıkçı Yaka"  ,
+        "genId":"ERKEK"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Bisiklet Yaka"  ,
+        "genId":"ERKEK"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Dik Yaka"  ,
+        "genId":"ERKEK"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Düğmeli"  ,
+        "genId":"ERKEK"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Geniş Yaka"  ,
+        "genId":"ERKEK"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Gömlek Yaka"  ,
+        "genId":"ERKEK"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Hakim Yaka"  ,
+        "genId":"ERKEK"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "İtalyan Yaka"  ,
+        "genId":"ERKEK"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Kapüşonlu"  ,
+        "genId":"ERKEK"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Kayık Yaka"  ,
+        "genId":"ERKEK"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Klasik",
+        "genId":"ERKEK"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "O Yaka" ,
+        "genId":"ERKEK"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Polo Yaka",
+        "genId":"ERKEK"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Sıfır Yaka",
+        "genId":"ERKEK"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Sivri Yaka",
+        "genId":"ERKEK"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "V Yaka",
+        "genId":"ERKEK"     
+    },
+    {
+        "yakaId": "",
+        "yakaname": "Yuvarlak Yaka",
+        "genId":"ERKEK"     
+    }
+]

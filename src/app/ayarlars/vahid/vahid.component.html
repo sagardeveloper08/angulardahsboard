@@ -1,0 +1,102 @@
+<div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Add/Edit/Delete Vahidler</h3>
+    <div class="card-body">
+      <div id="table" class="table-editable">
+        <span class="table-add float-right mb-3 mr-2">
+          <button type="button" mdbBtn color="primary" class="btn btn-success btn-rounded btn-sm my-0"
+          (click)="addvahid.show()" (click)="_addvahid()">Add <i class="fas fa-plus fa-2x" aria-hidden="true"></i></button>
+          </span> 
+          
+          <div mdbModal #addvahid="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="card-header">
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="addvahid.hide()">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <h4 class="modal-title w-150" id="myModalLabel"><span>New Vahid</span></h4>
+                </div>               
+              <form [formGroup]="vahidForm" class="normal-form" >               
+                <div class="modal-body" > 
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <label for="vahidadi" class=""><i class="fas fa-tag prefix grey-text"></i>Vahi adi</label>
+                    <input type="text" [(ngModel)]="vahid.vahidadi" name="vahidadi" placeholder="Vahidadi yazin" class="form-control" formControlName="vahidadi" mdbInput>   
+                    </div>  
+                  <!--  <div class="col-sm-12">
+                        <label for="description" class=""><i class="fas fa-tag prefix grey-text"></i>Description</label>
+                      <input type="text" [(ngModel)]="vahid.description" name="description" placeholder="description yazin" class="form-control" formControlName="description" mdbInput>   
+                    </div>  -->               
+                  </div>        
+                           
+                </div>
+                <div class="modal-footer">
+                 <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)=onadd() (click)="addvahid.hide()" [disabled]="!vahidForm.valid">Save changes</button>
+                 <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="addvahid.hide()" mdbWavesEffect>Close</button>
+                 </div>
+               </form>
+              </div>
+            </div>
+          </div> 
+          
+          <div mdbModal #delvahid="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="card-header">
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="delvahid.hide()">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <h4 class="modal-title w-150" id="myModalLabel"><span>Del {{ vahid.vahidadi }}</span></h4>
+                </div>
+                <form  class="normal-form">           
+                <div class="modal-footer">
+                 <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="ondel()" (click)="delvahid.hide()">YES</button>
+                 <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="delvahid.hide()" mdbWavesEffect>NO</button>
+                 </div>
+               </form>
+              </div>
+            </div>
+          </div>
+          <table class="table table-bordered table-responsive-md table-striped text-center"  *ngIf='listvahid && listvahid.length'>
+            <thead>
+              <tr>                
+               <!-- <th class="text-center">Navid</th>-->
+                <!-- <th class="text-center">genId</th>  -->
+                <th class="text-center">Vahid name</th>    
+                <!--<th class="text-center">Description</th>    
+                <th class="text-center">firma_unvan</th>    
+                <th class="text-center">firma_email</th>
+                <th class="text-center">voen</th>    -->         
+                <th class="text-center">Sort</th>
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody *ngFor='let p of filteredvahid'>
+              <tr>
+               <!--   <td class="pt-3-half" contenteditable="true">{{ p.navid }}</td>-->
+                <!-- <td class="pt-3-half" contenteditable="true">{{ p.genId }}</td> -->
+                <td class="pt-3-half" contenteditable="true">{{ p.vahidadi }}</td>
+               <!-- <td class="pt-3-half" contenteditable="true">{{ p.description}}</td>    
+                <td class="pt-3-half" contenteditable="true">{{ p.firma_unvan}}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.firma_email}}</td>  
+                <td class="pt-3-half" contenteditable="true">{{ p.voen}}</td>  -->
+                <td class="pt-3-half">
+                  <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
+                        aria-hidden="true"></i></a></span>
+                  <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down"
+                        aria-hidden="true"></i></a></span>
+                </td>
+                <td>
+                  <span class="table-remove">
+                    <button type="button" (click)="addvahid.show()" (click)="_editvahid(p)" class="btn btn-info btn-sm my-0">
+                      Edit<i class="fas fa-edit"></i></button>
+                    <button type="button" (click)="delvahid.show()" (click)="_editvahid(p)" class="btn btn-danger btn-rounded btn-sm my-0">
+                      Remove<i class="fas fa-trash-alt"></i></button>
+                  </span>
+                </td>
+              </tr>       
+            </tbody>
+          </table>
+        </div>
+      </div>
+</div>

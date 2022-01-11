@@ -1,0 +1,72 @@
+<form [formGroup]="quesForm" class="row g-3 needs-validation" novalidate>
+    <div class="col-md-4"> </div>
+    <div class="col-md-4">
+      <label for="formGroupExampleInput">{{ ii_ }}</label>
+      <input type="text" [(ngModel)]="que.userId" name="userId" placeholder="Bura Email-inizi yazin" class="form-control" formControlName="userId" mdbInput >
+      <label for="formGroupExampleInput">Email</label>
+    </div><div class="col-md-4"> </div>
+    <div class="col-md-4"> </div>
+    <div class="col-md-4">
+      <input type="text" [(ngModel)]="que.subId" name="subId" placeholder="" class="form-control" formControlName="subId" mdbInput readonly>
+    <!-- <select [(ngModel)]="subcname"  name="_sub" formControlName="subId" (change)="selsub($event.target.value)"                       
+           class="browser-default custom-select" readonly>
+       <option >Choose</option>                                    
+       <option *ngFor="let o of _subce" [value]="o.subId" >{{o.subname}}</option>                                 
+     </select>-->
+     <label for="formGroupExampleInput">Subject</label>  
+      </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+          <div class="form-outline">
+            
+            <textarea type="text" [(ngModel)]="que.questin" name="questin" rows="3" placeholder="Suali yazin" class="form-control" formControlName="questin" mdbInput readonly></textarea>
+         
+            <div class="valid-feedback">Looks good!</div>
+            <label for="validationCustom01" class="form-label">Sual </label>
+          </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+      <div class="col-md-4">
+        <div class="form-outline">
+          <input  class="form-check-input" type="radio" name="ansId" value="1"  formControlName="ansId" required/>
+          <input type="text" [(ngModel)]="que.a_answer" name="A_answer" placeholder="" class="form-control" formControlName="a_answer" mdbInput readonly>
+           <label for="validationCustom01" class="form-label">A cavab</label>
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-outline">
+          <input  class="form-check-input" type="radio" name="ansId" value="2" formControlName="ansId" required/>
+          <input type="text" [(ngModel)]="que.b_answer" name="b_answer" placeholder="" class="form-control" formControlName="b_answer" mdbInput readonly readonly>
+          <label for="validationCustom02" class="form-label">B cavab</label>
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+      <div class="col-md-2"></div>
+      <div class="col-md-4">
+        <div class="form-outline">
+          <input  class="form-check-input" type="radio" name="ansId"  value="3" formControlName="ansId" required />
+          <input type="text" [(ngModel)]="que.c_answer" name="C_answer" placeholder="" class="form-control" formControlName="c_answer" mdbInput readonly>
+          <label for="validationCustom01" class="form-label">C cavab</label>
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-outline">
+          <input  class="form-check-input" type="radio" name="ansId" value="4" formControlName="ansId" required/>
+          <input type="text" [(ngModel)]="que.d_answer" name="d_answer" placeholder="" class="form-control" formControlName="d_answer" mdbInput readonly>
+          <label for="validationCustom02" class="form-label">D cavab</label>
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+      </div>
+      <div class="col-md-5"></div>
+      <div class="col-md-2"><button class="btn btn-primary" type="submit" (click)="onireli()" [disabled]="!quesForm.valid"> >>>> </button></div>   
+      <div class="col-md-1"><button class="btn btn-primary" type="submit" (click)="ongeri()" [disabled]="!quesForm.valid"> <<<< </button></div>
+      <div class="col-md-1"><button class="btn btn-success" type="submit" (click)="onnetice()" > NƏTİCƏ </button></div>
+      <div class="col-md-5"></div>   
+    </form>
+    
+  

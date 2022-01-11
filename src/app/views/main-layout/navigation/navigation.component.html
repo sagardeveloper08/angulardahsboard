@@ -1,0 +1,209 @@
+<!--Main Navigation-->
+<header>
+
+    <!-- Sidebar -->
+    <!-- <div class="sidebar-fixed position-fixed">
+
+        <a class="logo-wrapper waves-effect">
+            <img src="../../../../assets/img/angular-mdb.png" class="img-fluid" alt="">
+        </a>
+
+        <div class="list-group list-group-flush">
+
+            <a routerLink="dashboards/v1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="chart-pie" class="mr-3"></mdb-icon>Dashboard
+            </a>
+            <a routerLink="profiles/profile1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="user" class="mr-3"></mdb-icon>Profile</a>
+            <a routerLink="tables/table1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="table" class="mr-3"></mdb-icon>Tables</a>
+            <a routerLink="maps/map1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon far icon="map" class="mr-3"></mdb-icon>Maps</a>
+            <a routerLink="nonExistingPath" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="exclamation" class="mr-3"></mdb-icon>404</a>
+
+        </div>
+
+    </div> -->
+    <!-- Sidebar -->
+
+    <!--Navbar-->
+    <!-- <mdb-navbar [containerInside]="false" SideClass="navbar navbar-expand-lg navbar-light white">
+     <logo class="ml-3">
+            <a class="navbar-brand" href="https://mdbootstrap.com/angular/angular-bootstrap-getting-started/">
+                <strong class="blue-text">MDB</strong>
+            </a>
+        </logo>      
+        <links>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" mdbWavesEffect>Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://mdbootstrap.com/angular/angular-bootstrap-getting-started/" target="_blank" mdbWavesEffect>About MDB</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://mdbootstrap.com/angular/getting-started/" target="_blank" mdbWavesEffect>Free download</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://mdbootstrap.com/angular/angular-tutorial/" target="_blank" mdbWavesEffect>Free tutorials</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav nav-flex-icons">
+
+                    <li class="nav-item">
+                        <a href="https://www.facebook.com/mdbootstrap" class="nav-link" target="_blank" mdbWavesEffect>
+                            <mdb-icon fab icon="facebook-f"></mdb-icon>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://twitter.com/MDBootstrap" class="nav-link" target="_blank" mdbWavesEffect>
+                            <mdb-icon fab icon="twitter"></mdb-icon>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="nav-link border border-light"
+                            target="_blank" mdbWavesEffect>
+                            <mdb-icon fab icon="github" class="mr-2"></mdb-icon>MDB GitHub
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://mdbootstrap.com/products/angular-ui-kit/" class="ml-1 nav-link border border-light rounded" mdbWavesEffect>
+                            <mdb-icon far icon="gem" class=" left"></mdb-icon> Go Pro</a>
+                    </li>
+                </ul>
+        </links>
+        </mdb-navbar> -->
+    <!--/.Navbar-->
+    <div class="sidebar-fixed position-fixed " id="sidebar" *ngIf="status ? false : true">
+
+        <a class="logo-wrapper waves-effect">
+            <img src="" class="img-fluid" alt="">
+        </a>
+
+        <div class="list-group list-group-flush">
+
+            <a routerLink="dashboards/v1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="chart-pie" class="mr-3"></mdb-icon>Dashboard
+            </a>
+            <a routerLink="profiles/profile1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="user" class="mr-3"></mdb-icon>Profile</a>
+            <a routerLink="tables/table1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="table" class="mr-3"></mdb-icon>Tables</a>
+            <!-- <a routerLink="/" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon far icon="map" class="mr-3"></mdb-icon>Maps</a>
+            <a routerLink="/" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="exclamation" class="mr-3"></mdb-icon>404</a> -->
+        </div>
+    </div>
+    
+    <mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark unique-color justify-content-between scrolling-navbar" [containerInside]="false">
+       <mdb-navbar-brand >     
+      <!-- <a href="#" data-activates="slide-out" class="btn btn-dark p-3 button-collapse waves-effect waves-light"><i class="fas fa-bars"></i></a> -->
+      <a class="navbar-brand " href="#" data-activates="slide-out" (click)="clickEvent()" >       
+     Demo   <i class="fas fa-bars"></i> </a>
+    </mdb-navbar-brand>     
+    <links>  
+      <ul class="navbar-nav mr-auto">
+        <!-- <li class="nav-item active">
+          <a class="nav-link waves-light" mdbWavesEffect href="/dashboards/v1">Home<span class="sr-only">(current)</span></a>
+        </li> -->
+        <li *ngIf="isLoggedIn && !isLoading" class="nav-item">
+          <a (click)="navbar.hide()" class="nav-link waves-light" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" mdbWavesEffect>HOME<span class="sr-only">(current)</span></a>
+        </li>
+        <li><a class="navbar-brand" href="setting/hazirla">Dashboard</a></li> 
+        <ng-container *ngIf="isLoggedIn && !isLoading && isAdmin">
+          <!-- <li  class="nav-item">
+             <a (click)="navbar.hide()" class="nav-link waves-light" routerLink="/admin-panel" routerLinkActive="active" mdbWavesEffect>Admin panel</a>
+           </li> -->
+          
+           <li *ngFor="let it of _menu"  class="nav-item dropdown" dropdown >                
+                      <a *ngIf="it.nisparent && it.pid ==null" dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+                      <span class="caret">{{it.ntitle}}</span></a>               
+                      <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu" >
+                        <li *ngFor="let i of _childmenu">
+                          <a *ngIf="!i.nisparent && i.pid==it.nid" class="dropdown-item waves-light" mdbWavesEffect href={{i.npath}}>{{i.ntitle}}</a>
+                        </li>
+                        <div class="divider dropdown-divider"></div>
+                    </div>
+             </li>
+             <li *ngFor="let item of _menu" class="nav-item">
+                <a *ngIf="!item.nisparent && item.pid ==null" (click)="navbar.hide()" class="nav-link waves-light" routerLink={{item.npath}} routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" mdbWavesEffect>{{item.ntitle}}</a>
+            </li>
+         </ng-container>  
+        <!-- <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect>Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect>Pricing</a>
+        </li>   -->
+        <!-- Dropdown -->
+        <!-- <li class="nav-item dropdown" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            Product<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect href="products/productlist">All product</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="products/productone">Sifarish et</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="products/shoping-cart">Shoping</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="products/checkout">Checkout</a>
+            
+            <a class="dropdown-item waves-light" mdbWavesEffect href="products/productlist1">All product1</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="products/productone1">Sifarish et1</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="products/shoping-cart1">Shoping1</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="products/checkout1">Checkout1</a>
+            <div class="divider dropdown-divider"></div>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Separated link</a>
+          </div>
+        </li> -->
+        <li class="nav-item dropdown" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            test<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect href="test/t1">t1</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="test/t2">t2</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="test/tabserch">tabserch</a>
+            <div class="divider dropdown-divider"></div>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Separated link</a>
+          </div>
+        </li>
+      </ul>      
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item"><a class="nav-link"><mdb-icon fab icon="twitter"></mdb-icon></a></li>
+        <li class="nav-item"><a class="nav-link"><mdb-icon fab icon="google-plus"></mdb-icon></a></li> 
+        <ng-container *ngIf="!isLoggedIn && !isLoading">
+          <li class="nav-item" >
+            <a class="nav-link" routerLink="login" mdbWavesEffect><mdb-icon fas icon="user"></mdb-icon> Login</a>
+          </li>
+        </ng-container>
+        <ng-container  *ngIf="isLoggedIn && !isLoading">
+          <li class="nav-link waves-light dropdown avatar p-0 avatar-dropdown" mdbDropdown>
+            <a mdbDropdownToggle mdbWavesEffect type="button" class="nav-link waves-light"  mdbWavesEffect>
+              <i *ngIf="!user.photoUrl" class="fas fa-sign-out-alt"></i>
+              <img *ngIf="user.photoUrl" src="{{ _photoUrl }}" height="35" width="35" class="rounded-circle z-depth-0" alt="avatar image">
+            </a>
+              <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown-primary" role="menu">            
+                  <div *ngIf="user.displayName" class="text-center py-2 px-2"> {{ user.displayName }}</div>
+                  <div *ngIf="!user.displayName" class="text-center py-2 px-2">Anonymous user</div>
+                  <div class="divider dropdown-divider"></div>
+                  <a  class="dropdown-item text-center waves-light" routerLink="/manage" title="Manage" mdbWavesEffect>Manager</a> 
+                  <a class="dropdown-item text-center waves-light" mdbWavesEffect (click)="onLogout(); navbar.hide()">Logout</a>
+              </div>
+          </li>
+        </ng-container>    
+      </ul>     
+    </links>
+  </mdb-navbar>
+
+</header>
+<script type="text/javascript">
+  $(document).ready(function() {
+  // SideNav Button Initialization
+  $(".button-collapse").sideNav2();
+    // SideNav Scrollbar Initialization
+    var sideNavScrollbar = document.querySelector('.custom-scrollbar');
+    var ps = new PerfectScrollbar(sideNavScrollbar);
+});
+</script>
+<!--Main Navigation-->

@@ -1,0 +1,125 @@
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Add/Edit/Delete Müşdəri</h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      <span class="table-add float-right mb-3 mr-2">
+        <button type="button" mdbBtn color="primary" class="btn btn-success btn-rounded btn-sm my-0"
+        (click)="addmushteri.show()" (click)="_addmushteri()">Add <i class="fas fa-plus fa-2x" aria-hidden="true"></i></button>
+        </span> 
+        
+        <div mdbModal #addmushteri="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="card-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="addmushteri.hide()">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-150" id="myModalLabel"><span>New Müşdəri</span></h4>
+              </div>               
+            <form [formGroup]="mushteriForm" class="normal-form" >               
+              <div class="modal-body" > 
+                <div class="row">
+                  <div class="col-sm-6">
+                    <label for="firma" class=""><i class="fas fa-tag prefix grey-text"></i>mushteriin adi</label>
+                    <input type="text" [(ngModel)]="mushteri.firma" name="firma" placeholder="firma yazin" class="form-control" formControlName="firma" mdbInput>   
+                  </div>  
+                  <div class="col-sm-6">
+                      <label for="voen" class=""><i class="fas fa-tag prefix grey-text"></i>voen</label>
+                    <input type="number" [(ngModel)]="mushteri.voen" name="voen" placeholder="voen yazin" class="form-control" formControlName="voen" mdbInput>   
+                  </div> 
+                  <div class="col-sm-6">
+                    <label for="muqavilenom" class=""><i class="fas fa-tag prefix grey-text"></i>muqavilenom</label>
+                  <input type="text" [(ngModel)]="mushteri.muqavilenom" name="muqavilenom" placeholder="muqavilenom yazin" class="form-control" formControlName="muqavilenom" mdbInput>   
+                  </div>  
+                  <div class="col-sm-6">
+                  <label for="muqaviletar" class=""><i class="fas fa-tag prefix grey-text"></i>muqaviletar</label>
+                  <input type="date" [(ngModel)]="mushteri.muqaviletar" name="muqaviletar" placeholder="muqaviletar yazin" class="form-control" formControlName="muqaviletar" mdbInput> 
+                  </div>
+                  <div class="col-sm-6">
+                  <label for="valyuta" class=""><i class="fas fa-tag prefix grey-text"></i>valyuta</label>
+                   <input type="text" [(ngModel)]="mushteri.valyuta" name="valyuta" placeholder="valyuta yazin" class="form-control" formControlName="valyuta" mdbInput>   
+                  </div>
+                  <div class="col-sm-6">
+                  <label for="odemesherti" class=""><i class="fas fa-tag prefix grey-text"></i>odemesherti</label>
+                  <input type="text" [(ngModel)]="mushteri.odemesherti" name="odemesherti" placeholder="odemesherti yazin" class="form-control" formControlName="odemesherti" mdbInput>     
+                  </div>     
+                  <div class="col-sm-12">
+                    <label for="temsilchi" class=""><i class="fas fa-tag prefix grey-text"></i>temsilchi</label>
+                  <input type="text" [(ngModel)]="mushteri.temsilchi" name="temsilchi" placeholder="temsilchi yazin" class="form-control" formControlName="temsilchi" mdbInput>     
+                  </div>          
+                </div>     
+                </div>
+              <div class="modal-footer">
+               <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)=onadd() (click)="addmushteri.hide()" [disabled]="!mushteriForm.valid">Save changes</button>
+               <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="addmushteri.hide()" mdbWavesEffect>Close</button>
+               </div>
+             </form>
+            </div>
+          </div>
+        </div> 
+        
+        <div mdbModal #delmushteri="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="card-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="delmushteri.hide()">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-150" id="myModalLabel"><span>Del {{ mushteri.mushteriName }}</span></h4>
+              </div>
+              <form  class="normal-form">           
+              <div class="modal-footer">
+               <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="ondel()" (click)="delmushteri.hide()">YES</button>
+               <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="delmushteri.hide()" mdbWavesEffect>NO</button>
+               </div>
+             </form>
+            </div>
+          </div>
+        </div>
+        <table class="table table-bordered table-responsive-md table-striped text-center"  *ngIf='listmushteri && listmushteri.length'>
+          <thead>
+            <tr>                
+            
+              <th class="text-center">firma</th>  
+              <th class="text-center">Voen</th>     
+              <th class="text-center">Muqavilenom</th>  
+              <th class="text-center">Muqaviletar</th>   
+              <th class="text-center">temsilchi</th>
+              <th class="text-center">odemesherti</th>    
+              <th class="text-center">valyuta</th>            
+              <th class="text-center">Sort</th>
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody *ngFor='let p of filteredmushteri'>
+            <tr>
+            
+              <td class="pt-3-half" contenteditable="true">{{ p.firma }}</td>
+              <td class="pt-3-half" contenteditable="true">{{ p.voen}}</td>
+              <td class="pt-3-half" contenteditable="true">{{ p.muqavilenom}}</td>  
+              <td class="pt-3-half" contenteditable="true">{{ p.muqaviletar}}</td> 
+              <td class="pt-3-half" contenteditable="true">{{ p.temsilchi}}</td>
+              <td class="pt-3-half" contenteditable="true">{{ p.odemesherti}}</td>
+              <td class="pt-3-half" contenteditable="true">{{ p.valyuta}}</td>
+              <td class="pt-3-half">
+                <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
+                      aria-hidden="true"></i></a></span>
+                <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down"
+                      aria-hidden="true"></i></a></span>
+              </td>
+              <td>
+                <span class="table-remove">
+                  <button type="button" (click)="addmushteri.show()" (click)="_editmushteri(p)" class="btn btn-info btn-sm my-0">
+                    Edit<i class="fas fa-edit"></i></button>
+                  <button type="button" (click)="delmushteri.show()" (click)="_editmushteri(p)" class="btn btn-danger btn-rounded btn-sm my-0">
+                    Remove<i class="fas fa-trash-alt"></i></button>
+                </span>
+              </td>
+            </tr>       
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+
+

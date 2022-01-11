@@ -1,0 +1,104 @@
+<div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Add/Edit/Delete Aktivler</h3>
+    <div class="card-body">
+      <div id="table" class="table-editable">
+        <span class="table-add float-right mb-3 mr-2">
+          <button type="button" mdbBtn color="primary" class="btn btn-success btn-rounded btn-sm my-0"
+          (click)="addactiv.show()" (click)="_addactiv()">Add <i class="fas fa-plus fa-2x" aria-hidden="true"></i></button>
+          </span> 
+          
+          <div mdbModal #addactiv="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="card-header">
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="addactiv.hide()">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <h4 class="modal-title w-150" id="myModalLabel"><span>New Aktivler</span></h4>
+                </div>               
+              <form [formGroup]="activForm" class="normal-form" >               
+                <div class="modal-body" > 
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <label for="activName" class=""><i class="fas fa-tag prefix grey-text"></i>activin adi</label>
+                    <input type="text" [(ngModel)]="activ.activName" name="activName" placeholder="activName yazin" class="form-control" formControlName="activName" mdbInput>   
+                    </div>  
+                    <div class="col-sm-12">
+                        <label for="description" class=""><i class="fas fa-tag prefix grey-text"></i>Description</label>
+                      <input type="text" [(ngModel)]="activ.description" name="description" placeholder="description yazin" class="form-control" formControlName="description" mdbInput>   
+                    </div>                 
+                  </div>        
+                           
+                </div>
+                <div class="modal-footer">
+                 <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)=onadd() (click)="addactiv.hide()" [disabled]="!activForm.valid">Save changes</button>
+                 <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="addactiv.hide()" mdbWavesEffect>Close</button>
+                 </div>
+               </form>
+              </div>
+            </div>
+          </div> 
+          
+          <div mdbModal #delactiv="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="card-header">
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="delactiv.hide()">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <h4 class="modal-title w-150" id="myModalLabel"><span>Del {{ activ.activName }}</span></h4>
+                </div>
+                <form  class="normal-form">           
+                <div class="modal-footer">
+                 <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="ondel()" (click)="delactiv.hide()">YES</button>
+                 <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="delactiv.hide()" mdbWavesEffect>NO</button>
+                 </div>
+               </form>
+              </div>
+            </div>
+          </div>
+          <table class="table table-bordered table-responsive-md table-striped text-center"  *ngIf='listactiv && listactiv.length'>
+            <thead>
+              <tr>                
+               <!-- <th class="text-center">Navid</th>-->
+                <!-- <th class="text-center">genId</th>  -->
+                <th class="text-center">Activ name</th>    
+                <th class="text-center">Description</th>    
+               <!-- <th class="text-center">firma_unvan</th>    
+                <th class="text-center">firma_email</th>
+                <th class="text-center">voen</th>    -->         
+                <th class="text-center">Sort</th>
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody *ngFor='let p of filteredactiv'>
+              <tr>
+               <!--   <td class="pt-3-half" contenteditable="true">{{ p.navid }}</td>-->
+                <!-- <td class="pt-3-half" contenteditable="true">{{ p.genId }}</td> -->
+                <td class="pt-3-half" contenteditable="true">{{ p.activName }}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.description}}</td>    
+               <!-- <td class="pt-3-half" contenteditable="true">{{ p.firma_unvan}}</td>
+                <td class="pt-3-half" contenteditable="true">{{ p.firma_email}}</td>  
+                <td class="pt-3-half" contenteditable="true">{{ p.voen}}</td>  -->
+                <td class="pt-3-half">
+                  <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
+                        aria-hidden="true"></i></a></span>
+                  <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down"
+                        aria-hidden="true"></i></a></span>
+                </td>
+                <td>
+                  <span class="table-remove">
+                    <button type="button" (click)="addactiv.show()" (click)="_editactiv(p)" class="btn btn-info btn-sm my-0">
+                      Edit<i class="fas fa-edit"></i></button>
+                    <button type="button" (click)="delactiv.show()" (click)="_editactiv(p)" class="btn btn-danger btn-rounded btn-sm my-0">
+                      Remove<i class="fas fa-trash-alt"></i></button>
+                  </span>
+                </td>
+              </tr>       
+            </tbody>
+          </table>
+        </div>
+      </div>
+</div>
+
+
